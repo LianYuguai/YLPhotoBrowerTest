@@ -1,0 +1,15 @@
+//
+//  YLPhotoBrowerTest.pch
+//  YLPhotoBrowerTest
+//
+//  Created by 有 on 16/1/14.
+//  Copyright © 2016年 YL. All rights reserved.
+//
+
+#ifndef YLPhotoBrowerTest_pch
+#define YLPhotoBrowerTest_pch
+#import "YLPhotoBrowerTest.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* YLPhotoBrowerTest_pch */
