@@ -179,14 +179,28 @@
 - (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return _imageView;
 }
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale{
-    if (scale > 1) {
-        [UIView animateWithDuration:.3 animations:^{
-            _imageView.top = orginalY - (orginalHeight * (scale - 1)/2);
-
-        }];
-    }
-    NSLog(@"%f",scale);
+//- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale{
+//    if (scale > 1) {
+//        [UIView animateWithDuration:.3 animations:^{
+//            _imageView.top = orginalY - (orginalHeight * (scale - 1)/2);
+//
+//        }];
+//    }
+//    NSLog(@"%f",scale);
+//}
+-(void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    
+    CGRect imageViewFrame = _imageView.frame;
+    
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    
+    if (imageViewFrame.size.height > screenBounds.size.height)
+        
+    { imageViewFrame.origin.y = 0.0f; }
+    
+    else { imageViewFrame.origin.y = (screenBounds.size.height - imageViewFrame.size.height) / 2.0; }
+    
+    _imageView.frame = imageViewFrame;
 }
 
 @end
