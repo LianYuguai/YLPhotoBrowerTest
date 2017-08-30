@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		27DF8BEE3B2B4A1BF6FD33CF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FBAB34E52BE7C06077C04EDB /* libPods.a */; };
+		6D6CEF821F56975B00CA5036 /* YLPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6CEF811F56975B00CA5036 /* YLPhotoLoadingView.m */; };
+		6D6CEF851F5698F700CA5036 /* YLPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6CEF841F5698F700CA5036 /* YLPhotoProgressView.m */; };
+		710352C4C0073E0E50FCB586 /* libPods-YLPhotoBrowerTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9AF9DD55BAF2AF6ECFFDD72 /* libPods-YLPhotoBrowerTest.a */; };
 		CA6D77A21C4D6129003DED2E /* YLPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6D77A11C4D6129003DED2E /* YLPhotoToolbar.m */; };
 		CA7FD6191C481F27007DEB82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7FD6181C481F27007DEB82 /* main.m */; };
 		CA7FD61C1C481F27007DEB82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA7FD61B1C481F27007DEB82 /* AppDelegate.m */; };
@@ -48,7 +50,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		68EE4F87ED4826E793E5DE3D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6D6CEF801F56975B00CA5036 /* YLPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPhotoLoadingView.h; sourceTree = "<group>"; };
+		6D6CEF811F56975B00CA5036 /* YLPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLPhotoLoadingView.m; sourceTree = "<group>"; };
+		6D6CEF831F5698F700CA5036 /* YLPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPhotoProgressView.h; sourceTree = "<group>"; };
+		6D6CEF841F5698F700CA5036 /* YLPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLPhotoProgressView.m; sourceTree = "<group>"; };
+		BB43CEAC76A6902D9E787DFF /* Pods-YLPhotoBrowerTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLPhotoBrowerTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-YLPhotoBrowerTest/Pods-YLPhotoBrowerTest.release.xcconfig"; sourceTree = "<group>"; };
 		CA6D77A01C4D6129003DED2E /* YLPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLPhotoToolbar.h; sourceTree = "<group>"; };
 		CA6D77A11C4D6129003DED2E /* YLPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLPhotoToolbar.m; sourceTree = "<group>"; };
 		CA7FD6141C481F27007DEB82 /* YLPhotoBrowerTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLPhotoBrowerTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,8 +91,8 @@
 		CAE1B1871C49D17900960909 /* minion_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minion_03.png; sourceTree = "<group>"; };
 		CAE1B1881C49D17900960909 /* minion_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minion_04.png; sourceTree = "<group>"; };
 		CAE1B1891C49D17900960909 /* minion_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = minion_05.png; sourceTree = "<group>"; };
-		D959EFD50FD53ED4F1B24F3B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		FBAB34E52BE7C06077C04EDB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9AF9DD55BAF2AF6ECFFDD72 /* libPods-YLPhotoBrowerTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLPhotoBrowerTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDB91E2C901C8DCEB4C4ED08 /* Pods-YLPhotoBrowerTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLPhotoBrowerTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLPhotoBrowerTest/Pods-YLPhotoBrowerTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +101,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA7FD6731C488937007DEB82 /* QuartzCore.framework in Frameworks */,
-				27DF8BEE3B2B4A1BF6FD33CF /* libPods.a in Frameworks */,
+				710352C4C0073E0E50FCB586 /* libPods-YLPhotoBrowerTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,21 +122,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		072C352C1F3E1064FB1DC943 /* Frameworks */ = {
+		1739C17B0D5C485DB8008C93 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FBAB34E52BE7C06077C04EDB /* libPods.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B327152FFDD1BDF3E754F94B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				68EE4F87ED4826E793E5DE3D /* Pods.debug.xcconfig */,
-				D959EFD50FD53ED4F1B24F3B /* Pods.release.xcconfig */,
+				DDB91E2C901C8DCEB4C4ED08 /* Pods-YLPhotoBrowerTest.debug.xcconfig */,
+				BB43CEAC76A6902D9E787DFF /* Pods-YLPhotoBrowerTest.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3D4E6A12E1EE04981B029D1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D9AF9DD55BAF2AF6ECFFDD72 /* libPods-YLPhotoBrowerTest.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		CA7FD60B1C481F27007DEB82 = {
@@ -141,8 +147,8 @@
 				CA7FD6301C481F28007DEB82 /* YLPhotoBrowerTestTests */,
 				CA7FD63B1C481F28007DEB82 /* YLPhotoBrowerTestUITests */,
 				CA7FD6151C481F27007DEB82 /* Products */,
-				B327152FFDD1BDF3E754F94B /* Pods */,
-				072C352C1F3E1064FB1DC943 /* Frameworks */,
+				1739C17B0D5C485DB8008C93 /* Pods */,
+				3D4E6A12E1EE04981B029D1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +225,10 @@
 				CAE1B1811C497D5B00960909 /* YLPhoto.m */,
 				CAE1B1831C499F3A00960909 /* YLPhotosView.h */,
 				CAE1B1841C499F3A00960909 /* YLPhotosView.m */,
+				6D6CEF801F56975B00CA5036 /* YLPhotoLoadingView.h */,
+				6D6CEF811F56975B00CA5036 /* YLPhotoLoadingView.m */,
+				6D6CEF831F5698F700CA5036 /* YLPhotoProgressView.h */,
+				6D6CEF841F5698F700CA5036 /* YLPhotoProgressView.m */,
 				CA7FD6521C485326007DEB82 /* UIViewExt.h */,
 				CA7FD6531C485326007DEB82 /* UIViewExt.m */,
 			);
@@ -232,12 +242,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA7FD6411C481F28007DEB82 /* Build configuration list for PBXNativeTarget "YLPhotoBrowerTest" */;
 			buildPhases = (
-				B2FA88C99B1DEC1314182130 /* Check Pods Manifest.lock */,
+				5BEE9C11F1BC923CEA93F7C9 /* [CP] Check Pods Manifest.lock */,
 				CA7FD6101C481F27007DEB82 /* Sources */,
 				CA7FD6111C481F27007DEB82 /* Frameworks */,
 				CA7FD6121C481F27007DEB82 /* Resources */,
-				9400F25E79FC54DB5D1DF0AE /* Embed Pods Frameworks */,
-				AEC84CBD12C54D583B88BF71 /* Copy Pods Resources */,
+				DD35A13676CF709D20BFC709 /* [CP] Embed Pods Frameworks */,
+				04616C6622B6F8165DB0796D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -296,6 +306,7 @@
 					CA7FD6131C481F27007DEB82 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = Q7Z85UHDMH;
+						ProvisioningStyle = Automatic;
 					};
 					CA7FD62C1C481F28007DEB82 = {
 						CreatedOnToolsVersion = 7.2;
@@ -362,49 +373,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9400F25E79FC54DB5D1DF0AE /* Embed Pods Frameworks */ = {
+		04616C6622B6F8165DB0796D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLPhotoBrowerTest/Pods-YLPhotoBrowerTest-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AEC84CBD12C54D583B88BF71 /* Copy Pods Resources */ = {
+		5BEE9C11F1BC923CEA93F7C9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B2FA88C99B1DEC1314182130 /* Check Pods Manifest.lock */ = {
+		DD35A13676CF709D20BFC709 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-YLPhotoBrowerTest/Pods-YLPhotoBrowerTest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -419,6 +430,8 @@
 				CA6D77A21C4D6129003DED2E /* YLPhotoToolbar.m in Sources */,
 				CAE1B1821C497D5B00960909 /* YLPhoto.m in Sources */,
 				CAE1B17C1C497CFB00960909 /* YLPhotoBrowser.m in Sources */,
+				6D6CEF851F5698F700CA5036 /* YLPhotoProgressView.m in Sources */,
+				6D6CEF821F56975B00CA5036 /* YLPhotoLoadingView.m in Sources */,
 				CAE1B1851C499F3A00960909 /* YLPhotosView.m in Sources */,
 				CAE1B17F1C497D2D00960909 /* YLPhotoView.m in Sources */,
 				CA7FD6541C485326007DEB82 /* UIViewExt.m in Sources */,
@@ -561,27 +574,37 @@
 		};
 		CA7FD6421C481F28007DEB82 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68EE4F87ED4826E793E5DE3D /* Pods.debug.xcconfig */;
+			baseConfigurationReference = DDB91E2C901C8DCEB4C4ED08 /* Pods-YLPhotoBrowerTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q7Z85UHDMH;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YLPhotoBrowerTest/YLPhotoBrowerTest.pch";
 				INFOPLIST_FILE = YLPhotoBrowerTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YL.YLPhotoBrowerTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		CA7FD6431C481F28007DEB82 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D959EFD50FD53ED4F1B24F3B /* Pods.release.xcconfig */;
+			baseConfigurationReference = BB43CEAC76A6902D9E787DFF /* Pods-YLPhotoBrowerTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Q7Z85UHDMH;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/YLPhotoBrowerTest/YLPhotoBrowerTest.pch";
 				INFOPLIST_FILE = YLPhotoBrowerTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = YL.YLPhotoBrowerTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

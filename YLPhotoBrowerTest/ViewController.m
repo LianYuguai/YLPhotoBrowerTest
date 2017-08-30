@@ -24,7 +24,16 @@
 //    [self.view addSubview:_photoView];
     _photosView = [[YLPhotosView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
 //    self.photosView.pic_urls = status.pic_urls;
-    _photosView.pic_urls = @[@"minion_01.png",@"minion_02.png",@"minion_03.png",@"minion_04.png",@"minion_05.png"];
+    _photosView.pic_urls = @[@"http://139.224.25.66:80/attachments/appfile/ZCZ150243940619213.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/LBY150243940698916.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/YGL150243940674315.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/YEC150243940645014.jpg",
+                                                @"http://139.224.25.66:80/attachments/appfile/AVF150243940591112.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/GXC150243940563011.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/LFD150243940529810.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/XFV15024394050209.jpg",
+                                                 @"http://139.224.25.66:80/attachments/appfile/YZG15024394045818.jpg"
+];
     [self.view addSubview:_photosView];
 }
 

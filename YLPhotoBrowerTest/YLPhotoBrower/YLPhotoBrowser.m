@@ -10,7 +10,7 @@
 #import "YLPhoto.h"
 #import "YLPhotoView.h"
 #import "YLPhotoToolbar.h"
-
+#import <SDWebImageManager.h>
 #define kPadding 10
 #define kPhotoViewTagOffset 1000
 #define kPhotoViewIndex(photoView) ([photoView tag] - kPhotoViewTagOffset)
@@ -226,6 +226,31 @@
     [_visiblePhotoViews addObject:photoView];
     [_photoScrollView addSubview:photoView];
     
+    [self loadImageNearIndex:index];
+
+}
+//  加载index附近的图片
+- (void)loadImageNearIndex:(int)index
+{
+    if (index > 0) {
+        YLPhoto *photo = _photos[index - 1];
+//        [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//            //do nothing
+//        }];
+        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            
+        }];
+    }
+    
+    if (index < _photos.count - 1) {
+        YLPhoto *photo = _photos[index + 1];
+//        [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//            //do nothing
+//        }];
+        [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            
+        }];
+    }
 }
 
 #pragma mark index这页是否正在显示

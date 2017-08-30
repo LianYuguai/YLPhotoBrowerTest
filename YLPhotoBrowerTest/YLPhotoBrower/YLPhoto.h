@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface YLPhoto : NSObject
-//@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) UIImage *image; // 完整的图片
 
 @property (nonatomic, strong) UIImageView *srcImageView; // 来源view

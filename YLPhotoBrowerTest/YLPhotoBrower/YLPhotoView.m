@@ -8,11 +8,15 @@
 #import "YLPhotoView.h"
 #import "YLPhoto.h"
 #import "YLPhotoBrowser.h"
+#import <SDWebImageManager.h>
+#import "YLPhotoLoadingView.h"
 @interface YLPhotoView (){
     BOOL _doubleTap;
     UIImageView *_imageView;
     NSInteger orginalHeight;
     NSInteger orginalY;
+    YLPhotoLoadingView *_photoLoadingView;
+
 }
 
 @end
@@ -27,7 +31,8 @@
         _imageView = [[UIImageView alloc] init];
         _imageView.userInteractionEnabled = YES;
         [self addSubview:_imageView];
-        
+        // 进度条
+        _photoLoadingView = [[YLPhotoLoadingView alloc] init];
         // 属性
         self.backgroundColor = [UIColor clearColor];
         self.delegate = self;
@@ -59,8 +64,72 @@
 #pragma mark 显示图片
 - (void)showImage:(YLPhoto *)photo
 {
-    UIImage *image = photo.srcImageView.image;
-    _imageView.image = image;
+    [self photoStartLoad];
+    [self adjustFrame];
+}
+#pragma mark 开始加载图片
+- (void)photoStartLoad
+{
+    if (_photo.image) {
+        [_photoLoadingView removeFromSuperview];
+        _imageView.image = _photo.image;
+        self.scrollEnabled = YES;
+    } else {
+        _imageView.image = _photo.placeholder;
+        self.scrollEnabled = NO;
+        // 直接显示进度条
+        [_photoLoadingView showLoading];
+        [self addSubview:_photoLoadingView];
+        
+        ESWeakSelf;
+        ESWeak_(_photoLoadingView);
+        ESWeak_(_imageView);
+        if (_photo.url) {
+//            [SDWebImageManager.sharedManager downloadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//                ESStrong_(_photoLoadingView);
+//                if (receivedSize > kMinProgress) {
+//                    __photoLoadingView.progress = (float)receivedSize/expectedSize;
+//                }
+//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+//                ESStrongSelf;
+//                ESStrong_(_imageView);
+//                __imageView.image = image;
+//                [_self photoDidFinishLoadWithImage:image];
+//            }];
+            [[SDWebImageManager sharedManager] loadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+                ESStrong_(_photoLoadingView);
+                if (receivedSize > kMinProgress) {
+                    __photoLoadingView.progress = (float)receivedSize/expectedSize;
+                }
+            } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+                ESStrongSelf;
+                ESStrong_(_imageView);
+                __imageView.image = image;
+                [_self photoDidFinishLoadWithImage:image];
+            }];
+            
+        }else{
+            [self photoDidFinishLoadWithImage:_photo.placeholder];
+        }
+    }
+}
+#pragma mark 加载完毕
+- (void)photoDidFinishLoadWithImage:(UIImage *)image
+{
+    if (image) {
+        self.scrollEnabled = YES;
+        _photo.image = image;
+        [_photoLoadingView removeFromSuperview];
+        
+        if ([self.photoViewDelegate respondsToSelector:@selector(photoViewImageFinishLoad:)]) {
+            //            [self.photoViewDelegate photoViewImageFinishLoad:self];
+        }
+    } else {
+        [self addSubview:_photoLoadingView];
+        [_photoLoadingView showFailure];
+    }
+    
+    // 设置缩放比例
     [self adjustFrame];
 }
 

@@ -9,6 +9,7 @@
 #import "YLPhotosView.h"
 #import "YLPhotoBrowser.h"
 #import "YLPhoto.h"
+#import <UIImageVIew+WebCache.h>
 //#import "UIView+Extension.h"
 @implementation YLPhotosView
 
@@ -31,7 +32,9 @@
         UIImageView *photoView = [[UIImageView alloc] init];
         photoView.userInteractionEnabled = YES;
         photoView.tag = i;
-        photoView.image = [UIImage imageNamed:pic_urls[i]];
+//        photoView.image = [UIImage imageNamed:pic_urls[i]];
+        NSString *urlStr = _pic_urls[i];
+        [photoView sd_setImageWithURL:[NSURL URLWithString:urlStr]];
         [self addSubview:photoView];
         // 添加手势监听器（一个手势监听器 只能 监听对应的一个view）
         UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
@@ -55,7 +58,7 @@
         
         YLPhoto *photo = [[YLPhoto alloc] init];
         photo.srcImageView = self.subviews[i];
-//        photo.srcImageView.hidden = YES;
+        photo.url = [NSURL URLWithString:_pic_urls[i]];
         [photos addObject:photo];
     }
     browser.photos = photos;
@@ -75,10 +78,10 @@
     [super layoutSubviews];
     
     int count = self.pic_urls.count;
-    int maxCols = 2;
+    int maxCols = 3;
     for (int i = 0; i<count; i++) {
         UIImageView *photoView = self.subviews[i];
-        float photoWidth = (self.bounds.size.width - 10)/2;
+        float photoWidth = (self.bounds.size.width -  (maxCols-1) * 10)/maxCols;
         float photoHeight = photoWidth * 0.8;
         photoView.width = photoWidth;
         photoView.height = photoHeight;
