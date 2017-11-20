@@ -9,6 +9,10 @@
 #ifndef YLPhotoBrowerTest_pch
 #define YLPhotoBrowerTest_pch
 #import "YLPhotoBrowerTest.h"
+#import <UIImageView+WebCache.h>
+#import <SDWebImageManager.h>
+#define SCREEN_WIDTH    ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT   ([UIScreen mainScreen].bounds.size.height)
 #define ESWeak(var, weakVar) __weak __typeof(&*var) weakVar = var
 #define ESStrong_DoNotCheckNil(weakVar, _var) __typeof(&*weakVar) _var = weakVar
 #define ESStrong(weakVar, _var) ESStrong_DoNotCheckNil(weakVar, _var); if (!_var) return;
@@ -23,5 +27,12 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define kDevice_Is_iPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define ISIPHONE6P_FD (CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size) ? YES : NO)
+#define ISIPHONE6P1 (CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) ? YES : NO)
+#define ISIPHONE6P ((ISIPHONE6P_FD || ISIPHONE6P1) ? YES : NO)
+#define ISIPHONE6 (CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) ? YES : NO)
+#define ISIPHONE5 (CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) ? YES : NO)
+#define ISIPHONE4 (CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) ? YES : NO)
 
 #endif /* YLPhotoBrowerTest_pch */

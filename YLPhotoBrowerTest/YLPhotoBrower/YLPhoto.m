@@ -22,8 +22,8 @@
 {
     _srcImageView = srcImageView;
     _placeholder = srcImageView.image;
-    if (srcImageView.clipsToBounds) {
-        _capture = [self capture:srcImageView];
-    }
+//    if (srcImageView.clipsToBounds) {
+//        _capture = [self capture:srcImageView];
+//    }
 }
 @end

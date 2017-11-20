@@ -14,9 +14,10 @@
 
 @property (nonatomic, strong) UIImageView *srcImageView; // 来源view
 @property (nonatomic, strong, readonly) UIImage *placeholder;
-@property (nonatomic, strong, readonly) UIImage *capture;
+//@property (nonatomic, strong, readonly) UIImage *capture;
 
 @property (nonatomic, assign) BOOL firstShow;
+@property (nonatomic, assign) BOOL isCroped;
 
 // 是否已经保存到相册
 //@property (nonatomic, assign) BOOL save;

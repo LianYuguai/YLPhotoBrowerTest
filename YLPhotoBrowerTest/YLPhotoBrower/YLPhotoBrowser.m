@@ -10,7 +10,7 @@
 #import "YLPhoto.h"
 #import "YLPhotoView.h"
 #import "YLPhotoToolbar.h"
-#import <SDWebImageManager.h>
+
 #define kPadding 10
 #define kPhotoViewTagOffset 1000
 #define kPhotoViewIndex(photoView) ([photoView tag] - kPhotoViewTagOffset)
@@ -59,10 +59,9 @@
 
 - (void)show
 {
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [UIApplication sharedApplication].delegate.window;
     [window addSubview:self.view];
     [window.rootViewController addChildViewController:self];
-    
     if (_currentPhotoIndex == 0) {
         [self showPhotos];
     }
@@ -73,6 +72,9 @@
 {
     CGFloat barHeight = 44;
     CGFloat barY = self.view.frame.size.height - barHeight;
+    if (kDevice_Is_iPhoneX) {
+        barY = barY - 34.0;
+    }
     _toolbar = [[YLPhotoToolbar alloc] init];
     _toolbar.frame = CGRectMake(0, barY, self.view.frame.size.width, barHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -152,7 +154,6 @@
     
     [self.view removeFromSuperview];
     [self removeFromParentViewController];
-   
 
 }
 
@@ -234,9 +235,6 @@
 {
     if (index > 0) {
         YLPhoto *photo = _photos[index - 1];
-//        [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//            //do nothing
-//        }];
         [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             
         }];
@@ -244,9 +242,6 @@
     
     if (index < _photos.count - 1) {
         YLPhoto *photo = _photos[index + 1];
-//        [[SDWebImageManager sharedManager] downloadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//            //do nothing
-//        }];
         [[SDWebImageManager sharedManager] loadImageWithURL:photo.url options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             
         }];

@@ -8,7 +8,7 @@
 #import "YLPhotoView.h"
 #import "YLPhoto.h"
 #import "YLPhotoBrowser.h"
-#import <SDWebImageManager.h>
+#import "UIViewExt.h"
 #import "YLPhotoLoadingView.h"
 @interface YLPhotoView (){
     BOOL _doubleTap;
@@ -16,7 +16,6 @@
     NSInteger orginalHeight;
     NSInteger orginalY;
     YLPhotoLoadingView *_photoLoadingView;
-
 }
 
 @end
@@ -30,6 +29,9 @@
         // 图片
         _imageView = [[UIImageView alloc] init];
         _imageView.userInteractionEnabled = YES;
+//        _imageView.clipsToBounds = YES;
+//        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        [_imageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
         [self addSubview:_imageView];
         // 进度条
         _photoLoadingView = [[YLPhotoLoadingView alloc] init];
@@ -65,6 +67,9 @@
 - (void)showImage:(YLPhoto *)photo
 {
     [self photoStartLoad];
+
+//    UIImage *image = photo.srcImageView.image;
+//    _imageView.image = image;
     [self adjustFrame];
 }
 #pragma mark 开始加载图片
@@ -85,17 +90,6 @@
         ESWeak_(_photoLoadingView);
         ESWeak_(_imageView);
         if (_photo.url) {
-//            [SDWebImageManager.sharedManager downloadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-//                ESStrong_(_photoLoadingView);
-//                if (receivedSize > kMinProgress) {
-//                    __photoLoadingView.progress = (float)receivedSize/expectedSize;
-//                }
-//            } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-//                ESStrongSelf;
-//                ESStrong_(_imageView);
-//                __imageView.image = image;
-//                [_self photoDidFinishLoadWithImage:image];
-//            }];
             [[SDWebImageManager sharedManager] loadImageWithURL:_photo.url options:SDWebImageRetryFailed| SDWebImageLowPriority| SDWebImageHandleCookies progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
                 ESStrong_(_photoLoadingView);
                 if (receivedSize > kMinProgress) {
@@ -107,7 +101,7 @@
                 __imageView.image = image;
                 [_self photoDidFinishLoadWithImage:image];
             }];
-            
+
         }else{
             [self photoDidFinishLoadWithImage:_photo.placeholder];
         }
@@ -122,7 +116,7 @@
         [_photoLoadingView removeFromSuperview];
         
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewImageFinishLoad:)]) {
-            //            [self.photoViewDelegate photoViewImageFinishLoad:self];
+//            [self.photoViewDelegate photoViewImageFinishLoad:self];
         }
     } else {
         [self addSubview:_photoLoadingView];
@@ -191,45 +185,59 @@
 - (void)hide
 {
     if (_doubleTap) return;
-    
     // 移除进度条
-//    [_photoLoadingView removeFromSuperview];
+    [_photoLoadingView removeFromSuperview];
     self.contentOffset = CGPointZero;
-    
-    // 清空底部的小图
-    _photo.srcImageView.image = nil;
-    
     CGFloat duration = 0.15;
     if (_photo.srcImageView.clipsToBounds) {
         [self performSelector:@selector(reset) withObject:nil afterDelay:duration];
     }
-    
-    [UIView animateWithDuration:duration + 0.1 animations:^{
-        NSLog(@"%@",NSStringFromCGRect(_photo.srcImageView.frame));
-        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:self];
-        NSLog(@"%@",NSStringFromCGRect(_imageView.frame));
-        
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    if (_photo.isCroped) {
         // 通知代理
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
             [self.photoViewDelegate photoViewSingleTap:self];
         }
-    } completion:^(BOOL finished) {
-
-        // 设置底部的小图片
-        _photo.srcImageView.image = _imageView.image;
-
         // 通知代理
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewDidEndZoom:)]) {
             [self.photoViewDelegate photoViewDidEndZoom:self];
         }
-       
+    }else{
+        // 清空底部的小图
+        _photo.srcImageView.image = nil;
 
-    }];
+        [UIView animateWithDuration:duration+0.1 animations:^{
+            CGRect frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:self];
+            CGRect orginalFrame = _imageView.frame;
+            CGRect newFrame = CGRectMake((frame.origin.x + orginalFrame.origin.x)/2.0, (frame.origin.y + orginalFrame.origin.y)/2.0, (frame.size.width + orginalFrame.size.width)/2.0, (frame.size.height + orginalFrame.size.height)/2.0);
+            _imageView.frame = newFrame;
+            // 通知代理
+            if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
+                [self.photoViewDelegate photoViewSingleTap:self];
+            }
+        } completion:^(BOOL finished) {
+            _imageView.clipsToBounds = YES;
+            _imageView.contentMode = UIViewContentModeScaleAspectFill;
+            [_imageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
+            CGRect frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:self];
+
+            [UIView animateWithDuration:0.1 animations:^{
+                _imageView.frame = frame;
+            } completion:^(BOOL finished) {
+                // 设置底部的小图片
+                _photo.srcImageView.image = _imageView.image;
+                // 通知代理
+                if ([self.photoViewDelegate respondsToSelector:@selector(photoViewDidEndZoom:)]) {
+                    [self.photoViewDelegate photoViewDidEndZoom:self];
+                }
+            }];
+        }];
+    }
 }
 
 - (void)reset
 {
-    _imageView.image = _photo.capture;
+    _imageView.image = _photo.placeholder;
 //    _imageView.image = [UIImage imageNamed:@"minion_01.png"];
     _imageView.contentMode = UIViewContentModeScaleToFill;
 }
@@ -255,7 +263,7 @@
 //
 //        }];
 //    }
-//    NSLog(@"%f",scale);
+//    DLog(@"%f",scale);
 //}
 -(void)scrollViewDidZoom:(UIScrollView *)scrollView{
     
@@ -271,5 +279,8 @@
     
     _imageView.frame = imageViewFrame;
 }
-
+- (void)dealloc{
+    // 取消请求
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:@"file:///abc"]];
+}
 @end
