@@ -14,7 +14,9 @@
 
 @implementation AppDelegate
 
-
+//1
+//2
+//3
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT)];
     window.backgroundColor = [UIColor yellowColor];
